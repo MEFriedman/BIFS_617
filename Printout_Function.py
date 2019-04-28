@@ -2,7 +2,7 @@
 # WS HINDLE April 18, 2019
 # rev. 1 - frame number corrected
 
-def print_out(acc_lst, orf_lst, start_index_lst, lengths_lst):
+def print_out(acc_lst, orf_lst, start_index_lst, lengths_lst, minORFLength):
     acc_num = 0
 
     # loops through the various accession numbers contained in the original FASTA file
@@ -16,14 +16,22 @@ def print_out(acc_lst, orf_lst, start_index_lst, lengths_lst):
             # loops through and prints the reading frame, start position and length of each ORF
             for start in start_index_lst[acc_num][frame_num]:               
                 if start_index_lst[acc_num][frame_num][start_num] !='':
-                    print(acc_lst[acc_num],'| FRAME =',frame_num + 1,'POS =', start_index_lst[acc_num][frame_num][start_num],'LEN =', lengths_lst[acc_num][frame_num][start_num])
-                    codon_num = 0
-
-                    # loops through and prints out the codons contained in the ORF
-                    for codons in orf_lst[acc_num][frame_num][start_num]:
-                        print(orf_lst[acc_num][frame_num][start_num][codon_num], end = ' ')
-                        codon_num = codon_num + 1
-                    print()
+                    lengthOfOrf = lengths_lst[acc_num][frame_num][start_num]
+                    if (lengthOfOrf >= minORFLength):
+                        print(acc_lst[acc_num],'| FRAME =',frame_num + 1,'POS =', start_index_lst[acc_num][frame_num][start_num],'LEN =', lengths_lst[acc_num][frame_num][start_num])
+                        
+                        codon_num = 0
+                        # loops through and prints out the codons contained in the ORF
+                        for codons in orf_lst[acc_num][frame_num][start_num]:
+                            #Assignment asks us to print no more than 15 codons per line.  Add a new line
+                            #every 15th codon (codon_num % 15), but don't add a new line before the first
+                            #codon (codon_num != 0)
+                            if (codon_num % 15 == 0 and codon_num != 0):
+                                print()
+                                
+                            print(orf_lst[acc_num][frame_num][start_num][codon_num], end = ' ')
+                            codon_num = codon_num + 1
+                        print()
                 start_num = start_num + 1
             frame_num = frame_num + 1
         acc_num = acc_num +1
