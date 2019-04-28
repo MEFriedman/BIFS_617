@@ -1,5 +1,5 @@
 
-import Parser_revised, GP_get_filename, Printout_Function, reading_Sequences, identifyORF,reverseComplement, codonsMaryRB, ORFFinder, Mary_ORFFinder
+import Parser_revised, GP_get_filename, codonsMaryRB, Printout_Function
 
 # Prompting User for filename
 f = GP_get_filename.get_filename('txt') # the txt argument is for error checking purposes
