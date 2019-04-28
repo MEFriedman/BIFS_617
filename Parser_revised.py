@@ -37,7 +37,7 @@ def parser(file):
                 sequence=''
             
         else:
-            # make sure seq is converted to RNA and uppercase
+            # make sure seq is converted to DNA and uppercase
             line=re.sub('U','T',line.upper())
             line = re.sub(' ','',line)
 
