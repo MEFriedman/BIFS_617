@@ -8,6 +8,7 @@
 # main program developed by Scott Hindle                                 #
 ##########################################################################
 
+
 import re
 def parser(file):
     # Ask user to input minimum orf, ask until at least minimum of 50 is achieved. 
