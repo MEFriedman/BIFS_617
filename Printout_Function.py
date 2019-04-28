@@ -19,10 +19,16 @@ def print_out(acc_lst, orf_lst, start_index_lst, lengths_lst, minORFLength):
                     lengthOfOrf = lengths_lst[acc_num][frame_num][start_num]
                     if (lengthOfOrf >= minORFLength):
                         print(acc_lst[acc_num],'| FRAME =',frame_num + 1,'POS =', start_index_lst[acc_num][frame_num][start_num],'LEN =', lengths_lst[acc_num][frame_num][start_num])
+                        
                         codon_num = 0
-
                         # loops through and prints out the codons contained in the ORF
                         for codons in orf_lst[acc_num][frame_num][start_num]:
+                            #Assignment asks us to print no more than 15 codons per line.  Add a new line
+                            #every 15th codon (codon_num % 15), but don't add a new line before the first
+                            #codon (codon_num != 0)
+                            if (codon_num % 15 == 0 and codon_num != 0):
+                                print()
+                                
                             print(orf_lst[acc_num][frame_num][start_num][codon_num], end = ' ')
                             codon_num = codon_num + 1
                         print()
