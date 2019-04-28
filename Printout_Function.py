@@ -2,7 +2,7 @@
 # WS HINDLE April 18, 2019
 # rev. 1 - frame number corrected
 
-def print_out(acc_lst, orf_lst, start_index_lst, lengths_lst):
+def print_out(acc_lst, orf_lst, start_index_lst, lengths_lst, minORFLength):
     acc_num = 0
 
     # loops through the various accession numbers contained in the original FASTA file
@@ -16,14 +16,16 @@ def print_out(acc_lst, orf_lst, start_index_lst, lengths_lst):
             # loops through and prints the reading frame, start position and length of each ORF
             for start in start_index_lst[acc_num][frame_num]:               
                 if start_index_lst[acc_num][frame_num][start_num] !='':
-                    print(acc_lst[acc_num],'| FRAME =',frame_num + 1,'POS =', start_index_lst[acc_num][frame_num][start_num],'LEN =', lengths_lst[acc_num][frame_num][start_num])
-                    codon_num = 0
+                    lengthOfOrf = lengths_lst[acc_num][frame_num][start_num]
+                    if (lengthOfOrf >= minORFLength):
+                        print(acc_lst[acc_num],'| FRAME =',frame_num + 1,'POS =', start_index_lst[acc_num][frame_num][start_num],'LEN =', lengths_lst[acc_num][frame_num][start_num])
+                        codon_num = 0
 
-                    # loops through and prints out the codons contained in the ORF
-                    for codons in orf_lst[acc_num][frame_num][start_num]:
-                        print(orf_lst[acc_num][frame_num][start_num][codon_num], end = ' ')
-                        codon_num = codon_num + 1
-                    print()
+                        # loops through and prints out the codons contained in the ORF
+                        for codons in orf_lst[acc_num][frame_num][start_num]:
+                            print(orf_lst[acc_num][frame_num][start_num][codon_num], end = ' ')
+                            codon_num = codon_num + 1
+                        print()
                 start_num = start_num + 1
             frame_num = frame_num + 1
         acc_num = acc_num +1
