@@ -13,7 +13,7 @@
 
 import re
 def prompt_for_min_ORF():
-    # Ask user to input minimum orf, ask until at least minimum of 50 is achieved. 
+    # Ask user to input minimum orf, ask until at least minimum of 1 is achieved. 
     minOrf = 0
     while minOrf == 0:
         userOrfString = input("Please input the ORF minimum length or press enter to use the default [50]: ")
