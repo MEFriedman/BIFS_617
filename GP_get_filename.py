@@ -10,7 +10,6 @@ def get_filename(file_type):  # Gets the filename and does error trapping for
     path = '/Desktop/Python Working Directory/BIFS 617 - Group Project/'
     while flag:
         my_string = "Enter the name of a " + file_type + " file for open reading frame extraction? (e.g. cat." + file_type + " ) \n"
-        print('\n' * 100)
         file=input(my_string)      
         if os.path.exists(file):
             ext_len = len(file_type)
